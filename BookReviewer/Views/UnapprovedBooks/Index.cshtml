@@ -1,0 +1,49 @@
+﻿@model ICollection<BookReviewer.Models.DbModels.UnapprovedBook>
+@{
+    ViewBag.Title = "Unapproved Books";
+}
+
+<h2 class="text-center mb-4">Unapproved Books</h2>
+
+<table class="table table-striped" id="data-table">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Publisher
+            </th>
+            <th>
+                Option
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @item.Author.FullName()
+                </td>
+                <td>
+                    @item.Publisher.FullName()
+                </td>
+                <td>
+                    <button class="btn btn-primary ajax-approve" url="/UnapprovedBooks/Approve/@item.Id">Approve</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/Scripts/CustomScripts/DataTable.js" type="module"></script>
+}
+

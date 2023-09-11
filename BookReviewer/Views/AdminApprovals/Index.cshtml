@@ -1,0 +1,43 @@
+﻿@model ICollection<BookReviewer.Models.DbModels.AdminApproval>
+
+@{
+    ViewBag.Title = "Admin Approvals";
+}
+
+<h2 class="text-center mb-4">Admins without an Approval</h2>
+
+<table class="table table-striped" id="data-table">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>
+                Username
+            </th>
+            <th>
+                Full Name
+            </th>
+            <th>
+                Option
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+                </td>
+                <td>
+                    @item.ApplicationUser.FullName()
+                </td>
+                <td>
+                    <button class="btn btn-primary ajax-approve" url="/AdminApprovals/Approve/?adminId=@item.Id">Give Approval</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/Scripts/CustomScripts/DataTable.js" type="module"></script>
+}

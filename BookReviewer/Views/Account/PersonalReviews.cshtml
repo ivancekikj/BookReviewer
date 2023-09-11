@@ -1,0 +1,31 @@
+﻿@model ICollection<BookReviewer.Models.DbModels.Review>
+
+@{
+    ViewBag.Title = "My Reviews";
+}
+
+<h2 class="text-center mb-4">My Reviews</h2>
+
+<table id="data-table"  class="table table-striped">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>Book Title</th>
+            <th>Date Edited</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Book.Title</td>
+                <td>@Html.DisplayFor(m => item.DateEdited)</td>
+                <td><a href="/Books/Details/@item.BookId" class="btn btn-primary">Go To Book</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/Scripts/CustomScripts/DataTable.js" type="module"></script>    
+}

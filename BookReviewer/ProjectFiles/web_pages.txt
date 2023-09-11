@@ -1,0 +1,27 @@
+/Index
+/About
+
+/Authors/Index (Само за администратор)
+/Authors/Create (Само за администратор)
+/Authors/Edit (Само за администратор)
+/Authors/Details (Само за администратор)
+/Authors/Delete (Само за администратор)
+
+/Publishers/Index (Само за администратор)
+/Publishers/Create (Само за администратор)
+/Publishers/Edit (Само за администратор)
+/Publishers/Details (Само за администратор)
+/Publishers/Delete (Само за администратор)
+
+/Books/Index
+/Books/Create (Книги предложени од обични корисници мора од администратор да бидат одобрени)
+/Books/Edit (Само за администратор)
+/Books/Details (Create, Update и Delete операции за review само од обични корисници)
+/Books/Delete (Само за администратор)
+/Books/Approve (Само за администратор)
+
+/Accounts/Register (Регистрација за администратор мора од постоечки администратор да се одобри)
+/Accounts/Login
+/Accounts/Logout
+/Accounts/Details (Страница со сите review-а на обичен корисник само за тој конкретен корисник)
+/Accounts/Approve (Само за администратор)

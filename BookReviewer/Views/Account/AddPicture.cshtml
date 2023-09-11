@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "AddPicture";
+}
+
+<h2>AddPicture</h2>
+
+<form action="/Account/AddPicture" method="post" enctype="multipart/form-data">
+    @Html.TextBox("file1", "", new { @class = "form-control", @type = "file", @id = "file1" })
+    <button>Submit</button>
+</form>

@@ -1,0 +1,45 @@
+﻿@model ICollection<BookReviewer.Models.DbModels.Publisher>
+
+@{
+    ViewBag.Title = "All Publishers";
+}
+
+<h2 class="text-center mb-4">All Publishers</h2>
+<div class="text-center mb-4">
+    <a href="/Publishers/Create" class="btn btn-primary">Create a New Publisher</a>
+</div>
+
+<table class="table table-striped" id="data-table">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Location
+            </th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    <a href="/Publishers/Edit/@item.Id" class="btn btn-primary">Edit</a>
+                    <button class="btn btn-danger ajax-delete" url="/Publishers/Delete/@item.Id">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/Scripts/CustomScripts/DataTable.js" type="module"></script>
+}

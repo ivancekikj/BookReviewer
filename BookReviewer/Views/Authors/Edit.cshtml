@@ -1,0 +1,36 @@
+﻿@model BookReviewer.Models.DbModels.Author
+
+@{
+    ViewBag.Title = "Edit Author";
+}
+
+<div class="row justify-content-center">
+    @using (Html.BeginForm("Edit", "Authors", FormMethod.Post, htmlAttributes: new { @class = "col-lg-6 col-md-8 col-11 border border-primary border-2 rounded-2 p-4" }))
+    {
+        @Html.AntiForgeryToken()
+        <h2 class="text-center mb-5">Edit an Existing Author</h2>
+
+        @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+        @Html.HiddenFor(model => model.Id)
+
+        <!-- first name -->
+        <div class="form-group mb-4">
+            @Html.LabelFor(m => m.FirstName, htmlAttributes: new { @class = "form-label" })
+            @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- last name -->
+        <div class="form-group mb-4">
+            @Html.LabelFor(m => m.LastName, htmlAttributes: new { @class = "form-label" })
+            @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+        </div>
+
+        <button class="btn btn-primary w-100">Submit</button>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

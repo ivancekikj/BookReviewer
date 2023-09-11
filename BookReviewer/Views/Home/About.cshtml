@@ -1,0 +1,32 @@
+﻿@model BookReviewer.Models.ViewModels.AppStats
+@{
+    ViewBag.Title = "About";
+}
+
+<div class="card">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="/Content/Images/about-picture.jpg" class="img-fluid rounded-start" alt="Picture of Ivan Cekikj.">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body text-center">
+                <h1 class="card-title mb-3">About Book Reviewer</h1>
+                <p class="card-text">Book Reviewer is a web application created by Ivan Cekikj as a project task for the course Internet Technologies at FINKI. The app supports two types of users: normal and admin. Normal users can post reviews on any book in the Books section and even recommend a new book, while admins control data associated with books, authors and publishers, and can approve new books and admins. ASP.NET MVC is used for the back end.</p>
+                <div class="d-lg-flex justify-content-evenly">
+                    <p class="text-center">
+                        <span class="text-secondary">@Html.DisplayNameFor(m => m.NumberOfReviews): </span>
+                        <span>@Html.DisplayFor(m => m.NumberOfReviews)</span>
+                    </p>
+                    <p class="text-center">
+                        <span class="text-secondary">@Html.DisplayNameFor(m => m.NumberOfBooks): </span>
+                        <span>@Html.DisplayFor(m => m.NumberOfBooks)</span>
+                    </p>
+                    <p class="text-center">
+                        <span class="text-secondary">@Html.DisplayNameFor(m => m.NumberOfUsers): </span>
+                        <span>@Html.DisplayFor(m => m.NumberOfUsers)</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

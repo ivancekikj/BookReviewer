@@ -1,0 +1,41 @@
+﻿@model BookReviewer.Models.DbModels.Review
+@using BookReviewer.Models.DbModels
+@{
+    ViewBag.Title = "Create Review";
+    string formTitle = $"Create Review for '{Model.Book.Title}'";
+}
+
+<div class="row justify-content-center">
+    @using (Html.BeginForm("Create", "Reviews", FormMethod.Post, htmlAttributes: new { @class = "col-lg-6 col-md-8 col-11 border border-primary border-2 rounded-2 p-4" }))
+    {
+        @Html.AntiForgeryToken()
+        <h2 class="text-center mb-5">@formTitle</h2>
+
+        @Html.HiddenFor(m => m.UserId)
+        @Html.HiddenFor(m => m.BookId)
+        
+        <!-- rating -->
+        <div class="form-group mb-4">
+            @Html.LabelFor(m => m.Rating, htmlAttributes: new { @class = "form-label" })
+            @Html.DropDownListFor(
+                m => m.Rating,
+                Review.RatingsList,
+                htmlAttributes: new { @class = "form-select" }
+            )
+            @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- comment -->
+        <div class="form-group mb-4">
+            @Html.LabelFor(m => m.Comment, htmlAttributes: new { @class = "form-label" })
+            @Html.TextAreaFor(m => m.Comment, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Comment, "", new { @class = "text-danger" })
+        </div>
+
+        <button class="btn btn-primary w-100">Submit</button>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,63 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Book Reviewer</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav text-center ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" id="home-link" href="/Home/Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Home/About">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Books/Index">Books</a>
+                </li>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Account/Register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Account/Login">Log in</a>
+                    </li>
+                }
+                else
+                {
+                    if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Authors/Index">Authors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Publishers/Index">Publishers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/UnapprovedBooks/Index">Unapproved Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/AdminApprovals/Index">Admin Approvals</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Account/PersonalReviews">My Reviews</a>
+                        </li>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:document.getElementById('log-out').submit()">Log off</a>
+                        <form action="/Account/LogOff" method="post" class="d-none" id="log-out">
+                            @Html.AntiForgeryToken()
+                        </form>
+                    </li>
+                }
+                <li class="nav-item d-none">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,71 @@
+﻿@model ICollection<BookReviewer.Models.DbModels.Book>
+
+@{
+    ViewBag.Title = "Books";
+    string word = User.IsInRole("Administrator") ? "Create" : "Recommend";
+}
+
+<h2 class="text-center mb-4">All Books</h2>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="text-center mb-4">
+        <a href="/Books/Create" class="btn btn-primary">@word a New Book</a>
+    </div>
+}
+
+<table class="table table-striped" id="data-table">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Publisher
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Option(s)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Title)
+                </td>
+                <td>
+                    @item.Author.FullName()
+                </td>
+                <td>
+                    @item.Publisher.FullName()
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Genre)
+                </td>
+                <td>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a href="/Books/Edit/@item.Id" class="btn btn-primary">Edit</a>
+                    }
+                    <a href="/Books/Details/@item.Id" class="btn btn-primary">Details</a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                       <button class="btn btn-danger ajax-delete" url="/Books/Delete/@item.Id">Delete</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts {
+    <script src="~/Scripts/CustomScripts/DataTable.js" type="module"></script>
+}

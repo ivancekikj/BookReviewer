@@ -1,0 +1,128 @@
+﻿@model BookReviewer.Models.ViewModels.BookDetails
+@using BookReviewer.Models.ViewModels
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Book Details";
+}
+
+<div class="card mb-5">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@ImageHandler.GetImageSource(Model.Book.Image)" class="img-fluid rounded-start" alt="Image of '@Model.Book.Title' from @Model.Book.Author.FullName()">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-3">@Html.DisplayFor(m => m.Book.Title)</h1>
+                <div class="d-lg-flex justify-content-evenly">
+                    <p class="text-center">
+                        <span class="text-secondary">@Html.DisplayNameFor(m => m.Book.Genre): </span>
+                        <span>@Html.DisplayFor(m => m.Book.Genre)</span>
+                    </p>
+                    <p class="text-center">
+                        <span class="text-secondary">@Html.DisplayNameFor(m => m.Book.Isbn): </span>
+                        <span>@Html.DisplayFor(m => m.Book.Isbn)</span>
+                    </p>
+                    <p class="text-center">
+                        <span class="text-secondary">@Html.DisplayNameFor(m => m.Book.DatePublished): </span>
+                        <span>@Html.DisplayFor(m => m.Book.DatePublished)</span>
+                    </p>
+                </div>
+                <div class="justify-content-evenly d-lg-flex">
+                    <p class="text-center">
+                        <span class="text-secondary">@Html.DisplayNameFor(m => m.Book.AuthorId): </span>
+                        <span>@Model.Book.Author.FullName()</span>
+                    </p>
+                    <p class="text-center">
+                        <span class="text-secondary">@Html.DisplayNameFor(m => m.Book.PublisherId): </span>
+                        <span>@Model.Book.Publisher.FullName()</span>
+                    </p>
+                </div>
+                <div class="justify-content-evenly d-lg-flex">
+                    <p class="text-center">
+                        <span class="text-secondary">Number of reviews: </span>
+                        <span>@Html.DisplayFor(m => m.Book.Reviews.Count)</span>
+                    </p>
+                    <p class="text-center">
+                        <span class="text-secondary">Average rating: </span>
+                        @if (Model.AverageRating != null)
+                        {
+                            <span>@Math.Round((double)Model.AverageRating, 2) / 10</span>
+                        }
+                        else
+                        {
+                            <span>/</span>
+                        }
+                    </p>
+                </div>
+                <p class="card-text text-center">@Model.Book.Description</p>
+                @if (Model.UserId != null)
+                {
+                    <div class="text-center">
+                        @if (Model.Book.Reviews.Any(r => r.User.Id.Equals(Model.UserId)))
+                        {
+                            <a href="/Reviews/Edit/?bookId=@Model.Book.Id" class="btn btn-primary">Edit my review</a>
+                            <button class="btn btn-danger" id="btn-delete-review">Delete my review</button>
+                            <form action="/Reviews/Delete/" method="post" class="d-none" id="delete-review">
+                                @Html.AntiForgeryToken()
+                                @Html.Hidden("bookId", Model.Book.Id)
+                            </form>
+                        }
+                        else
+                        {
+                            <a href="/Reviews/Create/?bookId=@Model.Book.Id" class="btn btn-primary">Create review</a>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-5">
+    @foreach (var review in Model.Reviews)
+    {
+        <div class="col">
+            <div class="card text-center">
+                <div style="height: 300px; background-repeat:no-repeat; background-position: center; background-size:contain; background-image: url(@ImageHandler.GetImageSource(review.User.Image))"></div>
+                <div class="card-body">
+                    <h5 class="card-title mb-0">@@@review.User.UserName</h5>
+                    <p class="mb-2">(@review.User.FullName())</p>
+                    <p class="card-text">@review.Comment</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Rating: @review.Rating / 10</li>
+                    <li class="list-group-item">Created on: @Html.DisplayFor(m => review.DateCreated)</li>
+                    <li class="list-group-item">Edited on: @Html.DisplayFor(m => review.DateEdited)</li>
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.Book.Reviews.Count > 0) 
+{
+    <div class="d-flex flex-column flex-sm-row text-center justify-content-between mt-5 align-items-center">
+        @{ 
+            int start = (Model.CurrentPage - 1) * Model.PageSize + 1,
+                end = start + Model.Reviews.Count - 1;
+        }
+        <p>Showing reviews @start to @end of @Model.Book.Reviews.Count.</p>
+        @Html.PagedListPager(Model.Reviews, i => Url.Action("Details", "Books", new { id = Model.Book.Id, page = i }),
+            new PagedListRenderOptions
+            {
+                UlElementClasses = new List<string>() { "pagination", },
+                LiElementClasses = new List<string>() { "page-item page-item-li" }
+            }
+        )
+    </div>
+}
+
+@section scripts {
+    <script>
+        document.querySelectorAll(".page-item-li a")
+            .forEach(e => e.classList.add("page-link"));
+    </script>
+    <script src="~/Scripts/CustomScripts/DeleteReview.js" type="module"></script>
+}
