@@ -7,13 +7,13 @@ namespace BookReviewer.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class BookRefactor : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(BookRefactor));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "202309041847018_BookRefactor"; }
+            get { return "202309131953547_Initial"; }
         }
         
         string IMigrationMetadata.Source

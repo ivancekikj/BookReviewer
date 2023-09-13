@@ -66,21 +66,6 @@ namespace BookReviewer.Controllers
             return View(books);
         }
 
-        /*public ActionResult AddPicture()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddPicture(HttpPostedFileBase file1)
-        {
-            string userId = User.Identity.GetUserId();
-            ApplicationUser user = db.Users.Find(userId);
-            ImageHandler.CopyImageIntoModel(file1, user);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Home");
-        }*/
-
         //
         // GET: /Account/Login
         [AllowAnonymous]

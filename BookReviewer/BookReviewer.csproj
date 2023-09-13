@@ -196,65 +196,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202308061840187_Initial.cs" />
-    <Compile Include="Migrations\202308061840187_Initial.designer.cs">
-      <DependentUpon>202308061840187_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308181545004_NewReviewMethods.cs" />
-    <Compile Include="Migrations\202308181545004_NewReviewMethods.designer.cs">
-      <DependentUpon>202308181545004_NewReviewMethods.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308182150287_BookUpdate.cs" />
-    <Compile Include="Migrations\202308182150287_BookUpdate.designer.cs">
-      <DependentUpon>202308182150287_BookUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308182154444_BookUpdate2.cs" />
-    <Compile Include="Migrations\202308182154444_BookUpdate2.designer.cs">
-      <DependentUpon>202308182154444_BookUpdate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308182224350_BookUpdate3.cs" />
-    <Compile Include="Migrations\202308182224350_BookUpdate3.designer.cs">
-      <DependentUpon>202308182224350_BookUpdate3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308182227307_BookUpdate4.cs" />
-    <Compile Include="Migrations\202308182227307_BookUpdate4.designer.cs">
-      <DependentUpon>202308182227307_BookUpdate4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308191604003_AuthorUpdate.cs" />
-    <Compile Include="Migrations\202308191604003_AuthorUpdate.designer.cs">
-      <DependentUpon>202308191604003_AuthorUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308191634407_AuthorUpdate2.cs" />
-    <Compile Include="Migrations\202308191634407_AuthorUpdate2.designer.cs">
-      <DependentUpon>202308191634407_AuthorUpdate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308212050360_BookDateUpdate.cs" />
-    <Compile Include="Migrations\202308212050360_BookDateUpdate.designer.cs">
-      <DependentUpon>202308212050360_BookDateUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308221718156_PublisherUpdate.cs" />
-    <Compile Include="Migrations\202308221718156_PublisherUpdate.designer.cs">
-      <DependentUpon>202308221718156_PublisherUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308251953423_UnapprovedBookUpdate.cs" />
-    <Compile Include="Migrations\202308251953423_UnapprovedBookUpdate.designer.cs">
-      <DependentUpon>202308251953423_UnapprovedBookUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308261838221_ImageUpdate.cs" />
-    <Compile Include="Migrations\202308261838221_ImageUpdate.designer.cs">
-      <DependentUpon>202308261838221_ImageUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308270945328_ReviewDateUpdate.cs" />
-    <Compile Include="Migrations\202308270945328_ReviewDateUpdate.designer.cs">
-      <DependentUpon>202308270945328_ReviewDateUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202308292037334_DateTimeUpdate.cs" />
-    <Compile Include="Migrations\202308292037334_DateTimeUpdate.designer.cs">
-      <DependentUpon>202308292037334_DateTimeUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202309041847018_BookRefactor.cs" />
-    <Compile Include="Migrations\202309041847018_BookRefactor.designer.cs">
-      <DependentUpon>202309041847018_BookRefactor.cs</DependentUpon>
+    <Compile Include="Migrations\202309131953547_Initial.cs" />
+    <Compile Include="Migrations\202309131953547_Initial.designer.cs">
+      <DependentUpon>202309131953547_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractClasses\AbstractBook.cs" />
@@ -651,50 +595,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202308061840187_Initial.resx">
-      <DependentUpon>202308061840187_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308181545004_NewReviewMethods.resx">
-      <DependentUpon>202308181545004_NewReviewMethods.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308182150287_BookUpdate.resx">
-      <DependentUpon>202308182150287_BookUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308182154444_BookUpdate2.resx">
-      <DependentUpon>202308182154444_BookUpdate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308182224350_BookUpdate3.resx">
-      <DependentUpon>202308182224350_BookUpdate3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308182227307_BookUpdate4.resx">
-      <DependentUpon>202308182227307_BookUpdate4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308191604003_AuthorUpdate.resx">
-      <DependentUpon>202308191604003_AuthorUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308191634407_AuthorUpdate2.resx">
-      <DependentUpon>202308191634407_AuthorUpdate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308212050360_BookDateUpdate.resx">
-      <DependentUpon>202308212050360_BookDateUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308221718156_PublisherUpdate.resx">
-      <DependentUpon>202308221718156_PublisherUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308251953423_UnapprovedBookUpdate.resx">
-      <DependentUpon>202308251953423_UnapprovedBookUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308261838221_ImageUpdate.resx">
-      <DependentUpon>202308261838221_ImageUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308270945328_ReviewDateUpdate.resx">
-      <DependentUpon>202308270945328_ReviewDateUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202308292037334_DateTimeUpdate.resx">
-      <DependentUpon>202308292037334_DateTimeUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202309041847018_BookRefactor.resx">
-      <DependentUpon>202309041847018_BookRefactor.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202309131953547_Initial.resx">
+      <DependentUpon>202309131953547_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

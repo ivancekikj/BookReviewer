@@ -33,7 +33,7 @@
                         PhoneNumber = c.String(),
                         PhoneNumberConfirmed = c.Boolean(nullable: false),
                         TwoFactorEnabled = c.Boolean(nullable: false),
-                        LockoutEndDateUtc = c.DateTime(),
+                        LockoutEndDateUtc = c.DateTime(precision: 7, storeType: "datetime2"),
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
@@ -72,8 +72,8 @@
                     {
                         UserId = c.String(nullable: false, maxLength: 128),
                         BookId = c.Int(nullable: false),
-                        DateCreated = c.DateTime(nullable: false),
-                        DateEdited = c.DateTime(nullable: false),
+                        DateCreated = c.DateTime(precision: 7, storeType: "datetime2"),
+                        DateEdited = c.DateTime(precision: 7, storeType: "datetime2"),
                         Rating = c.Int(nullable: false),
                         Comment = c.String(nullable: false),
                     })
@@ -92,11 +92,10 @@
                         Isbn = c.String(nullable: false),
                         Description = c.String(nullable: false),
                         Genre = c.String(nullable: false),
-                        DatePublished = c.DateTime(nullable: false),
+                        DatePublished = c.DateTime(precision: 7, storeType: "datetime2"),
                         Image = c.Binary(),
                         AuthorId = c.Int(nullable: false),
                         PublisherId = c.Int(nullable: false),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Authors", t => t.AuthorId, cascadeDelete: true)
@@ -111,8 +110,6 @@
                         Id = c.Int(nullable: false, identity: true),
                         FirstName = c.String(nullable: false),
                         LastName = c.String(nullable: false),
-                        DateOfBirth = c.DateTime(nullable: false),
-                        Image = c.Binary(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -149,10 +146,32 @@
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
+            CreateTable(
+                "dbo.UnapprovedBooks",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(nullable: false),
+                        Isbn = c.String(nullable: false),
+                        Description = c.String(nullable: false),
+                        Genre = c.String(nullable: false),
+                        DatePublished = c.DateTime(precision: 7, storeType: "datetime2"),
+                        Image = c.Binary(),
+                        AuthorId = c.Int(nullable: false),
+                        PublisherId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Authors", t => t.AuthorId, cascadeDelete: true)
+                .ForeignKey("dbo.Publishers", t => t.PublisherId, cascadeDelete: true)
+                .Index(t => t.AuthorId)
+                .Index(t => t.PublisherId);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.UnapprovedBooks", "PublisherId", "dbo.Publishers");
+            DropForeignKey("dbo.UnapprovedBooks", "AuthorId", "dbo.Authors");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AdminApprovals", "Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
@@ -162,6 +181,8 @@
             DropForeignKey("dbo.Books", "AuthorId", "dbo.Authors");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropIndex("dbo.UnapprovedBooks", new[] { "PublisherId" });
+            DropIndex("dbo.UnapprovedBooks", new[] { "AuthorId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
@@ -173,6 +194,7 @@
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AdminApprovals", new[] { "Id" });
+            DropTable("dbo.UnapprovedBooks");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.Publishers");
