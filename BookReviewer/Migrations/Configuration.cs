@@ -1,9 +1,7 @@
 ﻿namespace BookReviewer.Migrations
 {
-    using System;
-    using System.Data.Entity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<BookReviewer.Models.ApplicationDbContext>
     {
@@ -18,6 +16,19 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+
+            context.Roles.AddOrUpdate(
+                r => r.Name,
+                new IdentityRole
+                {
+                    Name = "Administrator"
+                },
+                new IdentityRole
+                {
+                    Name = "NormalUser"
+                }
+            );
+            context.SaveChanges();
         }
     }
 }
