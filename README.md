@@ -4,7 +4,9 @@ Book Reviewer is a web application meant for what its very name stands for. It s
 
 # Technologies
 
-The project is coded with a front-end and backed-end part. HTML, CSS, Bootstrap, JavaScript and some jQuery are used in the front-end. Meanwhile, the back-end is coded in ASP.NET MVC and uses a local database (sqlexpress).
+The project is coded with a front-end and backed-end part. HTML, CSS, Bootstrap, JavaScript and some jQuery are used in the front-end. Meanwhile, the back-end is coded in ASP.NET MVC and uses a local database (MSSQLLocalDB).
+
+If you have a problem recreating the database after cloning this repository, check the database connection in SQL Server Object Explorer. 
 
 # Planning
 
